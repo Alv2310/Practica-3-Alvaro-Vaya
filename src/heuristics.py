@@ -50,8 +50,8 @@ def euclidean(point, point2):
     """
         Function that performs euclidean heuristic.
     """
-    x1, y1 = point
-    x2, y2 = point2
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
     dx = (x2-x1)**2
     dy = (y2-y1)**2
     return m.sqrt(dx+dy)
