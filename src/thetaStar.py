@@ -48,6 +48,23 @@ def children(point,grid):
                      [(x+1, y), (x,y + 1), (x+1, y+1)]]
     return [link for link in links if link.value != 9]
 
+def insideGrid(x, y, grid):
+    """
+        Calcula si un punto (x,y) está dentro del grid
+        Input:
+            x: coordenada x del punto
+            y: coordenada y del punto
+        Output: 
+            -true en caso de estar dentro del grid, false en caso contrario
+    """
+    isInside = False
+    if x > 0 and x < len(grid) - 1:
+        if y > 0 and y < len(grid[0]) - 1:
+            isInside = True
+    return isInside
+    
+
+
 #En el pseudocódigo: current == s y children == s'
 def update_Vertex(current, children):
     #Check if we beat the G score 
