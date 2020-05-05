@@ -61,3 +61,15 @@ def euclidean(point, point2):
     return m.sqrt(dx+dy)
 
 pp.register_heuristic('euclidean', euclidean)
+
+def octile(point, point2):
+    """
+        Function that performs euclidean heuristic.
+    """
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
+    dx = abs(x1-x2)
+    dy = abs(y1-y2)
+    return m.sqrt(2)*min(dx,dy)+abs(dx-dy)
+
+pp.register_heuristic('octile', octile)
