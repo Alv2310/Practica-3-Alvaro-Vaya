@@ -63,6 +63,64 @@ def insideGrid(x, y, grid):
             isInside = True
     return isInside
     
+def lineaDeVision(current, children, grid):
+    """
+        Calcula la línea de visión del algoritmo Theta*
+        Input:
+            current: nodo actual
+            children: nodo vecino/hijo
+            grid: grid en el que se trabaja
+        Output:
+            TODO: poner que hay que hacer aqui
+    """
+
+    x0, y0 = current.grid_point
+    x1, y1 = children.grid_point
+    dy = y1 - y0
+    dx = x1 - x0
+    f = 0
+
+    if dy < 0:
+        dy = -dy
+        sy = -1
+    else:
+        sy = 1
+    if dx < 0:
+        dx = -dx
+        sx = -1
+    else:
+        sx = 1
+
+    if dx >= dy:
+        while x0 != x1:
+            f += dy
+            if f >= dx:
+                if insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                    return False
+                y0 += sy
+                f -= dx
+            if f != 0 and insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                return False
+            if (dy == 0 and insideGrid(x0+((sx-1)/2),y0,grid) and
+                insideGrid(x0+((sx-1)/2),y0-1,grid)):
+                return False
+            x0 += sx
+    else:
+        while y0 != y1:
+            f += dx
+            if f >= dy:
+                if insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                    return False
+                x0 += sx
+                f -= dy
+            if f != 0 and insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                return False
+            if (dx == 0 and insideGrid(x0,y0+((sy-1)/2),grid) and 
+                insideGrid(x0-1,y0+((sy-1)/2),grid)):
+                return False
+            y0 += sy
+    return True
+
 
 
 #En el pseudocódigo: current == s y children == s'
