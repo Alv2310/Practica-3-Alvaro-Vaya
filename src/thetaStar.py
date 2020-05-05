@@ -64,7 +64,7 @@ def intransitable(x, y, grid):
             isInside = True
             print(grid[x][y].value)
             #El punto es un obstaculo
-            if grid[x][y].value == 9:
+            if grid[x][y].value != 1:
                 isTransitable = False
     return (not isTransitable) or (not isInside)
     

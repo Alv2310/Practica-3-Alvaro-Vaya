@@ -1,1 +1,5 @@
-python run_path_planning.py --scenario ../res/test_2.png --start "(10,10)" --finish "(15,15)" --grid_size 40 --algorithm Dijkstra --heuristic naive
+python3 run_path_planning.py --scenario ../res/test_2.png --start "(10,10)" --finish "(15,15)" --grid_size 40 --algorithm Dijkstra --heuristic naive
+
+
+python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --finish "(8,20)" --grid_size 40 --algorithm A* --heuristic naive
+python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --finish "(8,20)" --grid_size 40 --algorithm Theta* --heuristic naive
