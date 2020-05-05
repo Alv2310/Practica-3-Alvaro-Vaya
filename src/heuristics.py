@@ -34,7 +34,11 @@ def manhattan(point,point2):
     """
         Function that performs Manhattan heuristic.
     """
-    return 0
+    x1, y1 = point.grid_point
+    x2, y2 = point2.grid_point
+    dx = abs(x1-x2)
+    dy = abs(y1-y2)
+    return dx+dy
 
 pp.register_heuristic('manhattan', manhattan)
 
