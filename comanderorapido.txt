@@ -3,3 +3,16 @@ python3 run_path_planning.py --scenario ../res/test_2.png --start "(10,10)" --fi
 
 python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --finish "(8,20)" --grid_size 40 --algorithm A* --heuristic naive
 python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --finish "(8,20)" --grid_size 40 --algorithm Theta* --heuristic naive
+
+
+
+
+
+COMANDOS PARA EL PUNTO 7 DE LA PRIMERA PARTE (EJECUCION DE TODOS LOS ALGORITMOS CON TODAS LAS HEURISTICAS)
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Dijkstra --heuristic naive
+DIJKSTRA
+
+
+A*
+
+THETA*

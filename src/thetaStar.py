@@ -62,7 +62,6 @@ def intransitable(x, y, grid):
     if x > 0 and x < len(grid) - 1:
         if y > 0 and y < len(grid[0]) - 1:
             isInside = True
-            print(grid[x][y].value)
             #El punto es un obstaculo
             if grid[x][y].value != 1:
                 isTransitable = False
@@ -100,16 +99,13 @@ def lineaDeVision(current, children, grid):
             f += dy
             if f >= dx:
                 if intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
-                    print("F1")
                     return False
                 y0 = y0 + sy
                 f = f - dx
             if f != 0 and intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
-                print("F2")
                 return False
             if (dy == 0 and intransitable(x0+((sx-1)//2),y0,grid) and
                 intransitable(x0+((sx-1)//2),y0-1,grid)):
-                print("F3")
                 return False
             x0 = x0 + sx
     else:
@@ -117,19 +113,15 @@ def lineaDeVision(current, children, grid):
             f += dx
             if f >= dy:
                 if intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
-                    print("F4")
                     return False
                 x0 = x0 + sx
                 f = f - dy
             if f != 0 and intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
-                print("F5")
                 return False
             if (dx == 0 and intransitable(x0,y0+((sy-1)//2),grid) and 
                 intransitable(x0-1,y0+((sy-1)//2),grid)):
-                print("F6")
                 return False
             y0 = y0 + sy
-    print("SADKJFNSDKFNSDJNSKFNGLSFGFS")
     return True
 
 
@@ -137,7 +129,6 @@ def lineaDeVision(current, children, grid):
 #En el pseudocódigo: current == s y children == s'
 def update_Vertex(current, children, grid):
     if lineaDeVision(current.parent,children,grid):
-        print("PASA POR AQUI")
         #Check if we beat the G score 
         new_g = current.parent.G + current.parent.move_cost(children)
         if children.G > new_g:
