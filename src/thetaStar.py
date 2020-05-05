@@ -48,20 +48,25 @@ def children(point,grid):
                      [(x+1, y), (x,y + 1), (x+1, y+1)]]
     return [link for link in links if link.value != 9]
 
-def insideGrid(x, y, grid):
+def intransitable(x, y, grid):
     """
-        Calcula si un punto (x,y) está dentro del grid
+        Calcula si un punto es transitable
         Input:
-            x: coordenada x del punto
-            y: coordenada y del punto
+            node: nodo que representa al punto
+            grid: grid que se esta usando
         Output: 
-            -true en caso de estar dentro del grid, false en caso contrario
+            -true en caso de no ser transitable, false en caso contrario
     """
     isInside = False
+    isTransitable = True
     if x > 0 and x < len(grid) - 1:
         if y > 0 and y < len(grid[0]) - 1:
             isInside = True
-    return isInside
+            print(grid[x][y].value)
+            #El punto es un obstaculo
+            if grid[x][y].value == 9:
+                isTransitable = False
+    return (not isTransitable) or (not isInside)
     
 def lineaDeVision(current, children, grid):
     """
@@ -73,13 +78,11 @@ def lineaDeVision(current, children, grid):
         Output:
             TODO: poner que hay que hacer aqui
     """
-
     x0, y0 = current.grid_point
     x1, y1 = children.grid_point
     dy = y1 - y0
     dx = x1 - x0
     f = 0
-
     if dy < 0:
         dy = -dy
         sy = -1
@@ -91,34 +94,42 @@ def lineaDeVision(current, children, grid):
     else:
         sx = 1
 
+
     if dx >= dy:
         while x0 != x1:
             f += dy
             if f >= dx:
-                if insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                if intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
+                    print("F1")
                     return False
-                y0 += sy
-                f -= dx
-            if f != 0 and insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                y0 = y0 + sy
+                f = f - dx
+            if f != 0 and intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
+                print("F2")
                 return False
-            if (dy == 0 and insideGrid(x0+((sx-1)/2),y0,grid) and
-                insideGrid(x0+((sx-1)/2),y0-1,grid)):
+            if (dy == 0 and intransitable(x0+((sx-1)//2),y0,grid) and
+                intransitable(x0+((sx-1)//2),y0-1,grid)):
+                print("F3")
                 return False
-            x0 += sx
+            x0 = x0 + sx
     else:
         while y0 != y1:
             f += dx
             if f >= dy:
-                if insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                if intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
+                    print("F4")
                     return False
-                x0 += sx
-                f -= dy
-            if f != 0 and insideGrid(x0+((sx-1)/2),y0+((sy-1)/2),grid):
+                x0 = x0 + sx
+                f = f - dy
+            if f != 0 and intransitable(x0+((sx-1)//2),y0+((sy-1)//2),grid):
+                print("F5")
                 return False
-            if (dx == 0 and insideGrid(x0,y0+((sy-1)/2),grid) and 
-                insideGrid(x0-1,y0+((sy-1)/2),grid)):
+            if (dx == 0 and intransitable(x0,y0+((sy-1)//2),grid) and 
+                intransitable(x0-1,y0+((sy-1)//2),grid)):
+                print("F6")
                 return False
-            y0 += sy
+            y0 = y0 + sy
+    print("SADKJFNSDKFNSDJNSKFNGLSFGFS")
     return True
 
 
@@ -126,6 +137,7 @@ def lineaDeVision(current, children, grid):
 #En el pseudocódigo: current == s y children == s'
 def update_Vertex(current, children, grid):
     if lineaDeVision(current.parent,children,grid):
+        print("PASA POR AQUI")
         #Check if we beat the G score 
         new_g = current.parent.G + current.parent.move_cost(children)
         if children.G > new_g:
@@ -172,7 +184,7 @@ def thethaStar(start, goal, grid, heur='naive'):
                 continue
             #Otherwise if it is already in the open set
             if node in openset:
-                update_Vertex(current, node)
+                update_Vertex(current, node, grid)
             else:
                 #If it isn't in the open set, calculate the G and H score for the node
                 node.G = current.G + current.move_cost(node)
