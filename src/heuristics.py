@@ -28,6 +28,7 @@ __version__ = "0.0.1"
 
 
 import path_planning as pp
+import math as m
 
 def manhattan(point,point2):
     """
@@ -49,6 +50,10 @@ def euclidean(point, point2):
     """
         Function that performs euclidean heuristic.
     """
-    return 25
+    x1, y1 = point
+    x2, y2 = point2
+    dx = (x2-x1)**2
+    dy = (y2-y1)**2
+    return m.sqrt(dx+dy)
 
 pp.register_heuristic('euclidean', euclidean)
