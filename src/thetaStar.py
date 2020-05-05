@@ -124,13 +124,21 @@ def lineaDeVision(current, children, grid):
 
 
 #En el pseudocódigo: current == s y children == s'
-def update_Vertex(current, children):
-    #Check if we beat the G score 
-    new_g = current.G + current.move_cost(children)
-    if children.G > new_g:
-        #If so, update the node to have a new parent
-        children.G = new_g
-        children.parent = current
+def update_Vertex(current, children, grid):
+    if lineaDeVision(current.parent,children,grid):
+        #Check if we beat the G score 
+        new_g = current.parent.G + current.parent.move_cost(children)
+        if children.G > new_g:
+            #If so, update the node to have a new parent
+            children.G = new_g
+            children.parent = current.parent
+    else:
+        #Check if we beat the G score 
+        new_g = current.G + current.move_cost(children)
+        if children.G > new_g:
+            #If so, update the node to have a new parent
+            children.G = new_g
+            children.parent = current
 
 def thethaStar(start, goal, grid, heur='naive'):
     #The open and closed sets
