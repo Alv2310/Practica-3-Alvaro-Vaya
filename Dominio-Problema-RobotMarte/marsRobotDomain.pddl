@@ -25,13 +25,11 @@
 
     (:functions
         (distance ?p1 ?p2 - place);En metros
-        (slow-speed ?r - robot);En metros/minuto
-        (fast-speed ?r - robot);En metros/minuto
+        (speed ?r - robot);En metros/minuto
         (battery-level ?r - robot);de 0 a 100
         (max-battery-level ?r - robot);100
         (battery-threshold ?r - robot)
-        (fast-battery-consumption-rate ?r - robot);%bateria/metro
-        (slow-battery-consumption-rate ?r - robot) ;%bateria/metro
+        (battery-consumption-rate ?r - robot);%bateria/metro
         (taking-photo-duration ?r - robot);Minutos
         (drilling-time ?r - robot);Minutos
         (analyse-time ?r - robot);Minutos
@@ -41,11 +39,11 @@
         (total-battery-used ?r - robot) 
     )
 
-    (:durative-action move-slow
+    (:durative-action move
         :parameters (?r - robot ?p1 ?p2 - place)
         :duration (= ?duration (/ 
                                 (distance ?p1 ?p2)
-                                (slow-speed ?r)
+                                (speed ?r)
                                 )
                     )
         :condition (and 
@@ -59,7 +57,7 @@
                         (battery-level ?r)
                         (*
                             (distance ?p1 ?p2)
-                            (slow-battery-consumption-rate ?r)
+                            (battery-consumption-rate ?r)
                         )
                     )
                     (battery-threshold ?r)
@@ -78,7 +76,7 @@
                         (battery-level ?r)         
                         (*
                             (distance ?p1 ?p2)
-                            (slow-battery-consumption-rate ?r)
+                            (battery-consumption-rate ?r)
                         )
                     )
             )
@@ -86,59 +84,7 @@
                             (total-battery-used ?r) 
                             (*
                                 (distance ?p1 ?p2)
-                                (slow-battery-consumption-rate ?r)
-                            )
-                        )
-            )
-        )
-    )
-
-    (:durative-action move-fast
-        :parameters (?r - robot ?p1 ?p2 - place)
-        :duration (= ?duration (/ 
-                                (distance ?p1 ?p2)
-                                (fast-speed ?r)
-                                )
-                    )
-        :condition (and 
-            (at start (still ?r))
-            (at start (at-robot ?r ?p1))
-            (over all (connected ?p1 ?p2))
-            (over all (solar-panel-closed ?r))
-            (over all 
-                (>= 
-                    (-
-                        (battery-level ?r)
-                        (*
-                            (distance ?p1 ?p2)
-                            (fast-battery-consumption-rate ?r)
-                        )
-                    )
-                    (battery-threshold ?r)
-                )
-            )
-        )
-
-        :effect (and 
-            (at start (not (at-robot ?r ?p1)))
-            (at end (at-robot ?r ?p2))
-            (at start (moving ?r))
-            (at start (not (still ?r)))
-            (at end (not (moving ?r)))
-            (at end (still ?r))
-            (at end (decrease 
-                        (battery-level ?r)
-                        (*
-                            (distance ?p1 ?p2)
-                            (fast-battery-consumption-rate ?r)
-                        )
-                    )
-            )
-            (at end (increase 
-                            (total-battery-used ?r) 
-                            (*
-                                (distance ?p1 ?p2)
-                                (slow-battery-consumption-rate ?r)
+                                (battery-consumption-rate ?r)
                             )
                         )
             )
