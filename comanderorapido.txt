@@ -15,6 +15,8 @@ python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --fi
 
 
 
+COMANDO RAPIDO PARA EL MAPA CON OBSTACULO EN FORMA DE L
+python3 run_path_planning.py --scenario ../res/L.png --start "(5,5)" --finish "(6,7)" --grid_size 40 --algorithm Theta* --heuristic manhattan
 
 
 
