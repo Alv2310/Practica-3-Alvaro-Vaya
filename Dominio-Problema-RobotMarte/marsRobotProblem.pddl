@@ -2,28 +2,25 @@
     (:domain marsRobotDomain)
     (:objects 
             r - robot
-            p1 p2 p3 p4 p5 p6 - place
+            P0335 P1515 P0521 P1507 P2520 P3535 - place
             photop1 photop2 photop3t1 photop3t2 photop3t3 dataearthp2 dataearthp6t1 dataearthp6t2 - task
     )
 
-    ;El ratio de gasto de bateria esta calculado para que el robot, en el modo mas ahorrador (yendo a velocidad lenta)
-    ;pueda recorrer como maximo 300 metros (asi obligamos a recargar para ir de p4 a p5 y una vez llegado a p5 obligamos
-    ;a recargar otra vez antes de hacer otra accion)
     (:init
-        (connected p1 p2) (connected p2 p1)
-        (connected p2 p3) (connected p3 p2)
-        (connected p3 p4) (connected p4 p3)
-        (connected p4 p5) (connected p5 p4)
-        (connected p5 p6) (connected p6 p5)
-        (at-robot r p1)
+        (connected P0335 P1515) (connected P0335 P0335)
+        (connected P0335 P0521) (connected P0521 P1515)
+        (connected P0521 P1507) (connected P1507 P0521)
+        (connected P1507 P2520) (connected P2520 P1507)
+        (connected P2520 P3535) (connected P3535 P2520)
+        (at-robot r P0335)
         (still r)
         (solar-panel-closed r)
 
-        (= (distance p1 p2) 200) 
-        (= (distance p2 p3) 40)
-        (= (distance p3 p4) 90)
-        (= (distance p4 p5) 300)
-        (= (distance p5 p6) 50)
+        (= (distance P0335 P1515) 200) 
+        (= (distance P0335 P0521) 40)
+        (= (distance P0521 P1507) 90)
+        (= (distance P1507 P2520) 300)
+        (= (distance P2520 P3535) 50)
 
         (= (speed r) 30)
         (= (battery-level r) 100)
@@ -41,15 +38,15 @@
 
     (:goal
         (and
-            (at-robot r p6)
-            (data-on-earth p2 dataearthp2)
-            (data-on-earth p6 dataearthp6t1)
-            (data-on-earth p6 dataearthp6t2)
-            (have-photo r p1 photop1)
-            (have-photo r p2 photop2)
-            (have-photo r p3 photop3t1)
-            (have-photo r p3 photop3t2)
-            (have-photo r p3 photop3t3)
+            (at-robot r P3535)
+            (data-on-earth P0335 dataearthp2)
+            (data-on-earth P3535 dataearthp6t1)
+            (data-on-earth P3535 dataearthp6t2)
+            (have-photo r P0335 photop1)
+            (have-photo r P0335 photop2)
+            (have-photo r P0521 photop3t1)
+            (have-photo r P0521 photop3t2)
+            (have-photo r P0521 photop3t3)
         )
     )
     (:metric minimize (total-battery-used r))
