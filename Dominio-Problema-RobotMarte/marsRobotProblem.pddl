@@ -16,11 +16,14 @@
         (still r)
         (solar-panel-closed r)
 
-        (= (distance P0335 P1515) 200) 
-        (= (distance P0335 P0521) 40)
-        (= (distance P0521 P1507) 90)
-        (= (distance P1507 P2520) 300)
-        (= (distance P2520 P3535) 50)
+        ;En un grid de 40x40 consideramos que estamos en un espacio de 400x400 metros
+        ;Las distancias entre los puntos están expresadas en metros.
+        ;Autonomía máxima del robot: 300 metros sin violar el límite de 40% minimo de bateria
+        (= (distance P0335 P1515) 230) 
+        (= (distance P0335 P0521) 120)
+        (= (distance P0521 P1507) 170)
+        (= (distance P1507 P2520) 160)
+        (= (distance P2520 P3535) 180)
 
         (= (speed r) 30)
         (= (battery-level r) 100)
