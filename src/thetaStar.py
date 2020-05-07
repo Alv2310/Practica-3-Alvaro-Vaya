@@ -1,4 +1,5 @@
 import path_planning as pp
+import math as m
 
 def children(point,grid):
     """
@@ -127,7 +128,7 @@ def lineaDeVision(current, children, grid):
 
 
 #En el pseudocódigo: current == s y children == s'
-def update_Vertex(current, children, grid):
+def update_Vertex(current, children, grid, openset, closedset, goal, heur):
     """
         Procedimiento que actualiza la forma de llegar a un nodo a través de 
         su nodo padre o abuelo en función de la linea de visión
@@ -137,62 +138,51 @@ def update_Vertex(current, children, grid):
             grid: grid en el que se trabaja
     """
     if lineaDeVision(current.parent,children,grid):
-        #Check if we beat the G score 
         new_g = current.parent.G + current.parent.move_cost(children)
         if children.G > new_g:
-            #If so, update the node to have a new parent
             children.G = new_g
             children.parent = current.parent
+            #Si ya está en abiertos, lo eliminamos para volverlo a meter actualizado
+            if children in openset:
+                openset.remove(children)
+            children.H = pp.heuristic[heur](children, goal)
+            openset.add(children)
     else:
-        #Check if we beat the G score 
         new_g = current.G + current.move_cost(children)
         if children.G > new_g:
-            #If so, update the node to have a new parent
             children.G = new_g
             children.parent = current
+            if children in openset:
+                openset.remove(children)
+            children.H = pp.heuristic[heur](children, goal)
+            openset.add(children)
 
 def thethaStar(start, goal, grid, heur='naive'):
-    #The open and closed sets
     openset = set()
     closedset = set()
-    #Current point is the starting point
+    start.G = 0
+    start.parent = start
     current = start
-    #Add the starting point to the open set
     openset.add(current)
-    #While the open set is not empty
     while openset:
-        #Find the item in the open set with the lowest G + H score
         current = min(openset, key=lambda o:o.G + o.H)
         pp.expanded_nodes += 1
-        #If it is the item we want, retrace the path and return it
         if current == goal:
             path = []
-            while current.parent:
+            while current.G != 0:
                 path.append(current)
                 current = current.parent
             path.append(current)
             return path[::-1]
-        #Remove the item from the open set
         openset.remove(current)
-        #Add it to the closed set
         closedset.add(current)
-        #Loop through the node's children/siblings
         for node in children(current,grid):
-            #If it is already in the closed set, skip it
-            if node in closedset:
-                continue
-            #Otherwise if it is already in the open set
-            if node in openset:
-                update_Vertex(current, node, grid)
-            else:
-                #If it isn't in the open set, calculate the G and H score for the node
-                node.G = current.G + current.move_cost(node)
-                node.H = pp.heuristic[heur](node, goal)
-                #Set the parent to our current item
-                node.parent = current
-                #Add it to the set
-                openset.add(node)
-    #Throw an exception if there is no path
+            if node not in closedset:
+                if node not in openset:
+                    #Inicializamos las variables para el vecino
+                    node.G = m.inf
+                    node.parent = None
+                update_Vertex(current, node, grid, openset, closedset, goal, heur)
     raise ValueError('No Path Found')
 
 pp.register_search_method('Theta*', thethaStar)
