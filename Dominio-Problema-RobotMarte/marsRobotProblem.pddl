@@ -7,8 +7,8 @@
     )
 
     (:init
-        (connected P0335 P1515) (connected P0335 P0335)
-        (connected P0335 P0521) (connected P0521 P1515)
+        (connected P0335 P1515) (connected P1515 P0335)
+        (connected P1515 P0521) (connected P0521 P1515)
         (connected P0521 P1507) (connected P1507 P0521)
         (connected P1507 P2520) (connected P2520 P1507)
         (connected P2520 P3535) (connected P3535 P2520)
@@ -20,7 +20,7 @@
         ;Las distancias entre los puntos están expresadas en metros.
         ;Autonomía máxima del robot: 300 metros sin violar el límite de 40% minimo de bateria
         (= (distance P0335 P1515) 230) 
-        (= (distance P0335 P0521) 120)
+        (= (distance P1515 P0521) 120)
         (= (distance P0521 P1507) 170)
         (= (distance P1507 P2520) 160)
         (= (distance P2520 P3535) 180)
@@ -42,11 +42,11 @@
     (:goal
         (and
             (at-robot r P3535)
-            (data-on-earth P0335 dataearthp2)
+            (data-on-earth P1515 dataearthp2)
             (data-on-earth P3535 dataearthp6t1)
             (data-on-earth P3535 dataearthp6t2)
             (have-photo r P0335 photop1)
-            (have-photo r P0335 photop2)
+            (have-photo r P1515 photop2)
             (have-photo r P0521 photop3t1)
             (have-photo r P0521 photop3t2)
             (have-photo r P0521 photop3t3)
