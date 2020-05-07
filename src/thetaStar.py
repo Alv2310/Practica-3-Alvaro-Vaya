@@ -128,6 +128,14 @@ def lineaDeVision(current, children, grid):
 
 #En el pseudocódigo: current == s y children == s'
 def update_Vertex(current, children, grid):
+    """
+        Procedimiento que actualiza la forma de llegar a un nodo a través de 
+        su nodo padre o abuelo en función de la linea de visión
+        Input:
+            current: nodo actual
+            children: nodo hijo (vecino)
+            grid: grid en el que se trabaja
+    """
     if lineaDeVision(current.parent,children,grid):
         #Check if we beat the G score 
         new_g = current.parent.G + current.parent.move_cost(children)
