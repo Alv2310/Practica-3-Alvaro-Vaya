@@ -24,19 +24,19 @@ python3 run_path_planning.py --scenario ../res/test_2.png --start "(27,19)" --fi
 COMANDOS PARA EL PUNTO 7 DE LA PRIMERA PARTE (EJECUCION DE TODOS LOS ALGORITMOS CON TODAS LAS HEURISTICAS)
 
 DIJKSTRA (con una ejecucion vale)
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Dijkstra --heuristic naive
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Dijkstra --heuristic euclidean
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Dijkstra --heuristic octile
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Dijkstra --heuristic manhattan
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Dijkstra --heuristic naive
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Dijkstra --heuristic euclidean
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Dijkstra --heuristic octile
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Dijkstra --heuristic manhattan
 
 A*
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm A* --heuristic naive
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm A* --heuristic euclidean
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm A* --heuristic octile
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm A* --heuristic manhattan
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm A* --heuristic naive
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm A* --heuristic euclidean
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm A* --heuristic octile
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm A* --heuristic manhattan
 
 THETA*
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Theta* --heuristic naive
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Theta* --heuristic euclidean
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Theta* --heuristic octile
-python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(35,35)" --grid_size 40 --algorithm Theta* --heuristic manhattan
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Theta* --heuristic naive
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Theta* --heuristic euclidean
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Theta* --heuristic octile
+python3 run_path_planning.py --scenario ../res/test_3.png --start "(5,5)" --finish "(30,35)" --grid_size 40 --algorithm Theta* --heuristic manhattan
