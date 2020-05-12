@@ -76,7 +76,7 @@ def lineaDeVision(current, children, grid):
             children: nodo vecino/hijo
             grid: grid en el que se trabaja
         Output:
-            TODO: poner que hay que hacer aqui
+            True si se puede ir del hijo al current, false en caso contrario
     """
     x0, y0 = current.grid_point
     x1, y1 = children.grid_point
@@ -137,6 +137,7 @@ def update_Vertex(current, children, grid, openset, closedset, goal, heur):
             children: nodo hijo (vecino)
             grid: grid en el que se trabaja
     """
+    #Camino 1
     if lineaDeVision(current.parent,children,grid):
         new_g = current.parent.G + current.parent.move_cost(children)
         if children.G > new_g:
@@ -147,11 +148,13 @@ def update_Vertex(current, children, grid, openset, closedset, goal, heur):
                 openset.remove(children)
             children.H = pp.heuristic[heur](children, goal)
             openset.add(children)
+    #Camino 2
     else:
         new_g = current.G + current.move_cost(children)
         if children.G > new_g:
             children.G = new_g
             children.parent = current
+            #Si ya está en abiertos, lo eliminamos para volverlo a meter actualizado
             if children in openset:
                 openset.remove(children)
             children.H = pp.heuristic[heur](children, goal)

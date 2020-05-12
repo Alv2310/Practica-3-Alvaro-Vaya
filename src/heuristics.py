@@ -64,7 +64,7 @@ pp.register_heuristic('euclidean', euclidean)
 
 def octile(point, point2):
     """
-        Function that performs euclidean heuristic.
+        Function that performs octile heuristic.
     """
     x1, y1 = point.grid_point
     x2, y2 = point2.grid_point
