@@ -1,0 +1,42 @@
+TASKS:
+[('move', (15, 15)), 'drill', 'recharge', ('move', (5, 21)), ('move', (15, 7)), 'recharge', ('move', (25, 20)), 'recharge', ('move', (35, 35)), 'drill']
+(3, 35) -> (15, 15)
+(477, 467)
+11.925 11.675
+Planned path:  [(41, 414), (160, 402), (172, 391), (184, 251), (196, 239), (196, 227), (196, 215), (184, 180)]
+Path length:  8
+Total path cost:  14
+Total nodes expanded:  53
+Outputting result to ../out/test_2_task_1.png.
+(15, 15) -> (5, 21)
+(477, 467)
+11.925 11.675
+Planned path:  [(184, 180), (196, 215), (196, 227), (196, 239), (184, 251), (172, 297), (160, 309), (125, 309), (113, 297), (65, 251)]
+Path length:  10
+Total path cost:  21
+Total nodes expanded:  101
+Outputting result to ../out/test_2_task_4.png.
+(5, 21) -> (15, 7)
+(477, 467)
+11.925 11.675
+Planned path:  [(65, 251), (101, 110), (113, 99), (137, 99), (149, 87), (184, 87)]
+Path length:  6
+Total path cost:  6
+Total nodes expanded:  121
+Outputting result to ../out/test_2_task_5.png.
+(15, 7) -> (25, 20)
+(477, 467)
+11.925 11.675
+Planned path:  [(184, 87), (292, 110), (304, 169), (304, 192), (304, 204), (304, 239)]
+Path length:  6
+Total path cost:  11
+Total nodes expanded:  142
+Outputting result to ../out/test_2_task_7.png.
+(25, 20) -> (35, 35)
+(477, 467)
+11.925 11.675
+Planned path:  [(304, 239), (423, 414)]
+Path length:  2
+Total path cost:  2
+Total nodes expanded:  158
+Outputting result to ../out/test_2_task_9.png.
